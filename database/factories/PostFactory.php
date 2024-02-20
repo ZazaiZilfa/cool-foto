@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Kategori;
 use App\Models\User;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -27,14 +28,15 @@ class PostFactory extends Factory
     public function definition(): array
     {
         $randomName = $this->faker->word();
-        $randomUserId = User::inRandomOrder()->pluck('id')->first();
+        $randomUserId = User::inRandomOrder()->pluck('idUser')->first();
+        $randomKatId = Kategori::inRandomOrder()->pluck('idKategori')->first();
         $randomName = $this->faker->word();
         return [
             'postTitle' => $this->faker->word(),
             // 'email_verified_at' => now(),
             'kodeUser' => $randomUserId,
             // 'remember_token' => Str::random(10),
-            'postCategory' => '2',
+            'postCategory' => $randomKatId,
             'postImage' => $randomName,
             'postUrl' => $randomName,
             'status' => '2',

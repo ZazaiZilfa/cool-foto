@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
-    public function run($loopCount = 1)
+    public function run($loopCount = 10)
     {
         for ($i = 0; $i < $loopCount; $i++) {
             // \App\Models\User::factory()->create([
@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             //     'rekenings' => '0182308120238120',
             // ]);
 
-            post::factory()->create();
+            Post::factory()->create();
         }
     }
 }

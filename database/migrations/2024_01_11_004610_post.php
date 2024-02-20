@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('kodeUser')->unsigned();
             $table->bigInteger('postCategory')->unsigned();
             $table->string('postImage', 255);
-            $table->mediumText('postUrl');
+            $table->mediumText('postUrl')->nullable();
             $table->integer('status');
             $table->timestamps();
 

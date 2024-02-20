@@ -2,47 +2,66 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    // public function index(Request $request)
+    // {
+    //     $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //     ]);
+
+    //     $user = User::where('email', $request->email)->first();
+
+    //     dd($user);
+    // }
+
+    public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        $user = User::where('email', $request->email)->first();
-
-        dd($user);
-    }
-
-    public function login(Request $request): RedirectResponse
-    {
-        $credentials = $request->validate([
             'email' => ['required'],
             'password' => ['required'],
         ]);
-        dd($credentials);
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('dashboard');
+        $user = User::where('email', $request->email)->first();
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are invalid'],
+            ]);
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        return $user->createToken('user_login')->plainTextToken;
     }
 
+    public function logout(Request $request)
+    {
+        $logut = $request->user()->currentAccessToken()->delete();
+
+        if ($logut === true) {
+            return "Logged out";
+        } else {
+            return "Logout Failed";
+        }
+    }
+
+    public function me(Request $request)
+    {
+        $user = Auth::user();
+        $post = Post::where('kodeUser', $user->idUser)->get();
+        // dd($post);
+        return $post;
+    }
 
 
     /**

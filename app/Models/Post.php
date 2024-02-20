@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Database\Factories\PostFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
@@ -17,6 +18,16 @@ class Post extends Model
 
 
     protected $guarded = ['idPost'];
+
+    public function writer(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'kodeUser', 'idUser');
+    }
+
+    public function kat(): BelongsTo
+    {
+        return $this->belongsTo(Kategori::class, 'postCategory', 'idKategori');
+    }
 
     // protected static function boot()
     // {

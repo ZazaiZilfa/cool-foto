@@ -31,15 +31,17 @@
 
                                         <th>Action</th>
                                     </tr>
+                                    @foreach ($data as $row )
+
                                     <tr>
                                         <td>1</td>
-                                        <td>tes foto</td>
-                                        <td><div style="background-color: red; width:40px; height:40px;"></div></td>
-                                        <td>gunung</td>
-                                        <td>POS0001</td>
-                                        <td>mamat@gmail.com</td>
-                                        <td>2017-01-09</td>
-                                        <td>2017-01-09</td>
+                                        <td>{{ $row['postTitle'] }}</td>
+                                        <td><div style="background-color: {{ sprintf('#%06X', mt_rand(0, 0xFFFFFF)) }}; width:40px; height:40px;"></div></td>
+                                        <td>{{ $row['Kategori']['namaKategori'] }}</td>
+                                        <td>POS{{ $row['id'] }}</td>
+                                        <td>{{ $row['user']['email'] }}</td>
+                                        <td>{{ $row['created_at'] }}</td>
+                                        <td>{{ $row["updated_at"] }}</td>
 
                                         <td>
                                                 &nbsp;<a class="btn btn-danger btn-action"
@@ -48,24 +50,7 @@
                                                 data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
                                                 data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a></td>
                                     </tr>
-                                    tr>
-                                        <td>2</td>
-                                        <td>tes coyy</td>
-                                        <td><div style="background-color: blue; width:40px; height:40px;"></div></td>
-                                        <td>scenery</td>
-                                        <td>POS0002</td>
-                                        <td>dadang@gmail.com</td>
-                                        <td>2019-01-09</td>
-                                        <td>2019-01-09</td>
-
-                                        <td>
-                                                &nbsp;<a class="btn btn-danger btn-action"
-                                                data-toggle="tooltip"
-                                                title="Delete"
-                                                data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a></td>
-                                    </tr>
-
+                                    @endforeach
                                 </table>
                             </div>
                         </div>

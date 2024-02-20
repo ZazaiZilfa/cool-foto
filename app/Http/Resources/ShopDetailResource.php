@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ShopResource extends JsonResource
+class ShopDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -26,8 +26,8 @@ class ShopResource extends JsonResource
             'status' => $this->status,
             'created_at' => Carbon::parse($this->created_at)->format('Y-m-d'),
             'updated_at' => Carbon::parse($this->created_at)->format('Y-m-d'),
-            'user' => $this->writer,
-            'Kategori' => $this->kat,
+            'user' => $this->whenLoaded('writer'),
+            'Kategori' => $this->whenLoaded('kat'),
         ];
     }
 }

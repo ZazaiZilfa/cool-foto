@@ -99,25 +99,25 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Home</a>
+                                    <a class="nav-link" href="{{ url('beranda') }}">Home</a>
                                 </li>
                                 &nbsp;
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html">About</a>
+                                    <a class="nav-link" href="{{ url('about') }}">About</a>
                                 </li>&nbsp;
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="shop.html">shop</a>
+                                    <a class="nav-link" href="{{ url('shop') }}">shop</a>
                                 </li>&nbsp;
                                 <li class="nav-item">
-                                    <a class="nav-link" href="libraryy.html">Library</a>
+                                    <a class="nav-link" href="{{ url('library') }}">Library</a>
                                     <ul id="submenu">
-                                        <li><a href="add.html">Add Imaged</a></li>
-                                        <li><a href="libraryy.html">Public Libary</a></li>
-                                        <li><a href="wistlist.html">Wistlist</a></li>
+                                        <li><a href="{{ url('upimage') }}">Add Imaged</a></li>
+                                        <li><a href="{{ url('private') }}">Public Libary</a></li>
+                                        <li><a href="{{ url('wishlist') }}">Wistlist</a></li>
                                     </ul>
                                 </li>&nbsp;
                                 <li class="nav-item">
-                                    <a class="nav-link" href="login.html">Login</a>
+                                    <a class="nav-link" href="{{ url('login') }}">Login</a>
                                 </li>
                             </ul>
                         </div>
@@ -126,7 +126,7 @@
             </div>
         </div>
     </div>
-    </section>
+
     </div>
 
     </div>
@@ -149,7 +149,17 @@
         </div>
     </div>
     <div class="card-container">
+        @foreach ( $data as $row )
         <div class="card">
+            <img class="img-shop" src="{{ asset('user/images/view.jpeg') }}">
+            <div class="intro">
+                <h1>{{ $row['postImage'] }}</h1>
+                <a href="" class="card-button">Buy</a>
+                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
+            </div>
+        </div>
+        @endforeach
+        {{-- <div class="card">
             <img class="img-shop" src="{{ asset('user/images/view.jpeg') }}">
             <div class="intro">
                 <h1>Rice Fields</h1>
@@ -256,7 +266,7 @@
                 <a href="" class="card-button">Buy</a>
                 <a href="" class="card-button"> <i class='bx bx-like'></i></a>
             </div>
-        </div>
+        </div> --}}
     </div>
     <!-- end shop -->
 
