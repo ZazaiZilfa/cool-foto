@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Laravel\Sanctum\PersonalAccessToken;
 
-class AdminPostController extends Controller
+class AdminPaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,15 +37,15 @@ class AdminPostController extends Controller
         if (empty($userId)) {
             return redirect()->route('login');
         }
-        $client = new Client();
-        $url = "http://127.0.0.1:8000/api/admin/post";
-        $respone = $client->request('GET', $url);
-        $content = $respone->getBody()->getContents();
-        $contentarray = json_decode($content, true);
-        $data = $contentarray['data'];
-        // dd($data);
+        return view('pages.payment');
+    }
 
-        return  view('pages.post', ['data' => $data]);
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -65,6 +65,14 @@ class AdminPostController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
@@ -77,26 +85,6 @@ class AdminPostController extends Controller
      */
     public function destroy(string $id)
     {
-        $client = new Client();
-        $url = "http://127.0.0.1:8000/api/admin/post/$id";
-
-        // dd($namakat);
-        $respone = $client->request(
-            'DELETE',
-            $url
-        );
-
-
-
-        // $respone = $client->request('POST', $url, [
-        //     'headers' => ['Accept' => 'application/json'],
-        //     'body' => json_encode($parameter)
-        // ]);
-        $content = $respone->getBody()->getContents();
-        $contentarray = json_decode($content, true);
-        $data = $contentarray['data'];
-        // dd($data);
-        // print_r($data);
-        return   redirect()->route('adminkat')->with('success', 'Item deleted successfully');
+        //
     }
 }

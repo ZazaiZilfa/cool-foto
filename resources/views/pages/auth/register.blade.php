@@ -26,7 +26,7 @@
 
 
     <div class="wrapper">
-        <from action="">
+        <form action="">
             <h1>Register</h1>
             <div class="input-box">
                 <input type="text" placeholder="Username" required>
@@ -45,10 +45,11 @@
                 <i class='bx bxs-lock-alt' ></i>
             </div>
             <button type="submit" class="btn">Login</button>
+        </form>
             <br><br>
             <center><div class="register-link">
                 <p>Already have an account? <a href="{{ route('login') }}">Login</a></p>
             </div></center>
-        </from>
+
     </div>
 </body>

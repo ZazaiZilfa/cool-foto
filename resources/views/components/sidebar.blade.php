@@ -9,23 +9,23 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Menu</li>
             <li class="{{ Request::is('dashboard') ? 'active' : '' }} ">
-                <a  href="{{ url('home') }}"
+                <a  href="{{ url('admin/dashboard') }}"
                     class="nav-link "><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="{{ Request::is('post') ? 'active' : '' }} ">
-                <a  href="{{ url('post') }}"
+                <a  href="{{ url('admin/post') }}"
                     class="nav-link "><i class="fas fa-fire"></i><span>Post</span></a>
             </li>
             <li class="{{ Request::is('kategori') ? 'active' : '' }} ">
-                <a  href="{{ url('kategori') }}"
+                <a  href="{{ url('admin/kategori') }}"
                     class="nav-link "><i class="fas fa-fire"></i><span>Kategori</span></a>
             </li>
             <li class="{{ Request::is('users') ? 'active' : '' }} ">
-                <a  href="{{ url('users') }}"
+                <a  href="{{ url('admin/users') }}"
                     class="nav-link "><i class="fas fa-fire"></i><span>Users</span></a>
             </li>
             <li class="{{ Request::is('payment') ? 'active' : '' }} ">
-                <a  href="{{ url('payment') }}"
+                <a  href="{{ url('admin/payment') }}"
                     class="nav-link "><i class="fas fa-fire"></i><span>Payment</span></a>
             </li>
         </ul>

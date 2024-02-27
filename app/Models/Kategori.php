@@ -12,4 +12,9 @@ class Kategori extends Model
     protected $primaryKey = 'idKategori';
 
     protected $guarded = ['idKategori'];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

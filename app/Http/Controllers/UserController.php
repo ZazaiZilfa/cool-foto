@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ShopResource;
-use App\Http\Resources\ShopDetailResource;
+use App\Http\Resources\UserResource;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PostController extends Controller
+class UserController extends Controller
 {
+    use SoftDeletes;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $Post = Post::all(); // Assuming you're fetching a specific Post, change the parameter as needed
+        $Post = User::all(); // Assuming you're fetching a specific Post, change the parameter as needed
         // return response()->json(['post-data' => $Post]);
-        return ShopResource::collection($Post);
+        return UserResource::collection($Post);
     }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -34,8 +33,8 @@ class PostController extends Controller
             'status' => 'required',
         ]);
         $request['idPost'];
-        $post = Post::create($request->all());
-        return new ShopResource($post);
+        $post = User::create($request->all());
+        return new UserResource($post);
     }
 
     /**
@@ -43,16 +42,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::with('kat:idKategori,namaKategori')
-            ->with('writer:idUser,name,email')
-            ->find($id);
-        return new ShopDetailResource($post);
-    }
-
-    public function showkat($id)
-    {
-        $posts = Post::where('postCategory', $id)->get();
-        return ShopResource::collection($posts);
+        $post = User::find($id);
+        return new UserResource($post);
     }
 
     /**
@@ -67,11 +58,11 @@ class PostController extends Controller
             'status' => 'required',
         ]);
 
-        $post = Post::findorFail($id);
+        $post = User::findorFail($id);
         // dd($kategori);
         $post->update($request->all());
 
-        return new ShopResource($post);
+        return new UserResource($post);
     }
 
     /**
@@ -79,12 +70,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::findorFail($id);
+        $post = User::findorFail($id);
         // dd($kategori);
         $post->delete();
-        return new ShopResource($post);
+        return new UserResource($post);
     }
-
-    //my own function
-
 }

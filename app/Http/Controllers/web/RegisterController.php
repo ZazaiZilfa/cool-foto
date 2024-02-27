@@ -3,25 +3,24 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class RegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $client = new Client();
-        $url = "http://127.0.0.1:8000/api/shop";
-        $respone = $client->request('GET', $url);
-        $content = $respone->getBody()->getContents();
-        $contentarray = json_decode($content, true);
-        $data = $contentarray['data'];
-        // dd($respone);
+        return view('pages.auth.register');
+    }
 
-        return  view('pages.user.shop', ['data' => $data]);
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -36,6 +35,14 @@ class PostController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
     {
         //
     }

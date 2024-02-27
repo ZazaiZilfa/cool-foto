@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,21 +29,32 @@ Route::post('/login', [AuthController::class, 'login']);
 
 // Route::middleware(['auth:sanctum'])->group(function () {
 Route::get('/me', [AuthController::class, 'me']);
-Route::get('/logout', [AuthController::class, 'logout']);
+// Route::get('/logout', [AuthController::class, 'logout']);
 
 // Route::middleware(['CheckUserRole:admin'])->group(function () {
-Route::get('/admin', function () {
-    Route::prefix('/kategori')->group(function () {
+Route::prefix('admin')->group(function () {
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/', [DashboardController::class, 'show']);
+    });
+    Route::prefix('kategori')->group(function () {
         Route::get('/', [KategoriController::class, 'index']);
+        Route::get('/{id}', [KategoriController::class, 'show']);
         Route::post('/', [KategoriController::class, 'store']);
-        Route::patch('/{id}', [KategoriController::class, 'update']);
+        Route::put('/{id}', [KategoriController::class, 'update']);
         Route::delete('/{id}', [KategoriController::class, 'destroy']);
     });
-    Route::prefix('/post')->group(function () {
+    Route::prefix('post')->group(function () {
         Route::get('/', [postController::class, 'index']);
         Route::post('/', [postController::class, 'store']);
         Route::patch('/{id}', [postController::class, 'update']);
         Route::delete('/{id}', [postController::class, 'destroy']);
+        // Route::get('kat/{id}', [PostController::class, 'showkat']);
+    });
+    Route::prefix('users')->group(function () {
+        Route::get('/', [UserController::class, 'index']);
+        Route::post('/', [UserController::class, 'store']);
+        Route::patch('/{id}', [UserController::class, 'update']);
+        Route::delete('/{id}', [UserController::class, 'destroy']);
     });
 });
 // });
@@ -50,7 +63,12 @@ Route::get('/admin', function () {
 // Routes accessible only to regular users
 Route::get('/shop', [PostController::class, 'index']);
 Route::get('/shop/{id}', [PostController::class, 'show']);
+Route::get('/shop/kat/{id}', [PostController::class, 'showkat']);
 Route::post('/uploadpost', [PostController::class, 'store']);
+Route::prefix('kategori')->group(function () {
+    Route::get('/', [KategoriController::class, 'index']);
+    Route::get('/{id}', [KategoriController::class, 'show']);
+});
 Route::get('/user', function () {
     // User dashboard or any other user-related endpoint
 });

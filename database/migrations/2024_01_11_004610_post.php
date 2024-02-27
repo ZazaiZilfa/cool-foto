@@ -18,11 +18,12 @@ return new class extends Migration
             $table->bigInteger('postCategory')->unsigned();
             $table->string('postImage', 255);
             $table->mediumText('postUrl')->nullable();
+            $table->integer('price')->nullable();
             $table->integer('status');
             $table->timestamps();
 
-            $table->foreign('kodeUser')->references('idUser')->on('users');
-            $table->foreign('postCategory')->references('idKategori')->on('kategori');
+            $table->foreign('kodeUser')->references('idUser')->on('users')->onDelete('cascade');
+            $table->foreign('postCategory')->references('idKategori')->on('kategori')->onDelete('cascade');
         });
     }
 

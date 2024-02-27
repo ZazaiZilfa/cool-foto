@@ -17,7 +17,12 @@
                 <h1>Dashboard</h1>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-primary">
                             <i class="far fa-user"></i>
@@ -27,12 +32,10 @@
                                 <h4>Total User</h4>
                             </div>
                             <div class="card-body">
-                                10
+                                {{ $data['jumlahUser'] }}
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-danger">
                             <i class="far fa-newspaper"></i>
@@ -42,19 +45,16 @@
                                 <h4>Total Post</h4>
                             </div>
                             <div class="card-body">
-                                42
+                                {{ $data['jumlahPost'] }}
                             </div>
                         </div>
                     </div>
                 </div>
 
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                <div class="col-lg-8 col-md-8 col-8 col-sm-8">
                     <div class="card">
                         <div class="card-header">
-                            <a  href="{{ url('post') }}"><h4>Latest Posts</h4></a>
+                            <a  href="{{ url('admin/post') }}"><h4>Latest Posts</h4></a>
 
                         </div>
                         <div class="card-body p-0">
@@ -63,179 +63,26 @@
                                     <thead>
                                         <tr>
                                             <th>Title</th>
+                                            <th>Image</th>
                                             <th>Author</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($data['postTerbaru'] as $row)
+
                                         <tr>
                                             <td>
-                                                Introduction Laravel 5
-                                                <div class="table-links">
-                                                    in <a href="#">Web Development</a>
-                                                    <div class="bullet"></div>
-                                                    <a href="#">View</a>
-                                                </div>
+                                                {{ $row['postTitle'] }}
                                             </td>
+                                            <td><div style="background-color: {{ sprintf('#%06X', mt_rand(0, 0xFFFFFF)) }}; width:40px; height:40px;"></td>
                                             <td>
-                                                <a href="#"
-                                                    class="font-weight-600"><img
-                                                        src="{{ asset('img/avatar/avatar-1.png') }}"
-                                                        alt="avatar"
-                                                        width="30"
-                                                        class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
+                                                <div
+                                                    class="font-weight-600"> {{ $row['user']['email'] }}</div>
                                             </td>
-                                            <td>
-                                                <a class="btn btn-primary btn-action mr-1"
-                                                    data-toggle="tooltip"
-                                                    title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <a class="btn btn-danger btn-action"
-                                                    data-toggle="tooltip"
-                                                    title="Delete"
-                                                    data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                    data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                                            </td>
+
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                Laravel 5 Tutorial - Installation
-                                                <div class="table-links">
-                                                    in <a href="#">Web Development</a>
-                                                    <div class="bullet"></div>
-                                                    <a href="#">View</a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#"
-                                                    class="font-weight-600"><img
-                                                        src="{{ asset('img/avatar/avatar-1.png') }}"
-                                                        alt="avatar"
-                                                        width="30"
-                                                        class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-primary btn-action mr-1"
-                                                    data-toggle="tooltip"
-                                                    title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <a class="btn btn-danger btn-action"
-                                                    data-toggle="tooltip"
-                                                    title="Delete"
-                                                    data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                    data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Laravel 5 Tutorial - MVC
-                                                <div class="table-links">
-                                                    in <a href="#">Web Development</a>
-                                                    <div class="bullet"></div>
-                                                    <a href="#">View</a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#"
-                                                    class="font-weight-600"><img
-                                                        src="{{ asset('img/avatar/avatar-1.png') }}"
-                                                        alt="avatar"
-                                                        width="30"
-                                                        class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-primary btn-action mr-1"
-                                                    data-toggle="tooltip"
-                                                    title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <a class="btn btn-danger btn-action"
-                                                    data-toggle="tooltip"
-                                                    title="Delete"
-                                                    data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                    data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Laravel 5 Tutorial - Migration
-                                                <div class="table-links">
-                                                    in <a href="#">Web Development</a>
-                                                    <div class="bullet"></div>
-                                                    <a href="#">View</a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#"
-                                                    class="font-weight-600"><img
-                                                        src="{{ asset('img/avatar/avatar-1.png') }}"
-                                                        alt="avatar"
-                                                        width="30"
-                                                        class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-primary btn-action mr-1"
-                                                    data-toggle="tooltip"
-                                                    title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <a class="btn btn-danger btn-action"
-                                                    data-toggle="tooltip"
-                                                    title="Delete"
-                                                    data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                    data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Laravel 5 Tutorial - Deploy
-                                                <div class="table-links">
-                                                    in <a href="#">Web Development</a>
-                                                    <div class="bullet"></div>
-                                                    <a href="#">View</a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#"
-                                                    class="font-weight-600"><img
-                                                        src="{{ asset('img/avatar/avatar-1.png') }}"
-                                                        alt="avatar"
-                                                        width="30"
-                                                        class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-primary btn-action mr-1"
-                                                    data-toggle="tooltip"
-                                                    title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <a class="btn btn-danger btn-action"
-                                                    data-toggle="tooltip"
-                                                    title="Delete"
-                                                    data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                    data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Laravel 5 Tutorial - Closing
-                                                <div class="table-links">
-                                                    in <a href="#">Web Development</a>
-                                                    <div class="bullet"></div>
-                                                    <a href="#">View</a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#"
-                                                    class="font-weight-600"><img
-                                                        src="{{ asset('img/avatar/avatar-1.png') }}"
-                                                        alt="avatar"
-                                                        width="30"
-                                                        class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-primary btn-action mr-1"
-                                                    data-toggle="tooltip"
-                                                    title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <a class="btn btn-danger btn-action"
-                                                    data-toggle="tooltip"
-                                                    title="Delete"
-                                                    data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                    data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                                            </td>
-                                        </tr>
+                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

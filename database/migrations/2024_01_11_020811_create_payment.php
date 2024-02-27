@@ -21,9 +21,9 @@ return new class extends Migration
             $table->integer('status')->default(null);
             $table->timestamps();
 
-            $table->foreign('buyer')->references('idUser')->on('users');
-            $table->foreign('seller')->references('idUser')->on('users');
-            $table->foreign('kodeImage')->references('idPost')->on('post');
+            $table->foreign('buyer')->references('idUser')->on('users')->onDelete('cascade');
+            $table->foreign('seller')->references('idUser')->on('users')->onDelete('cascade');
+            $table->foreign('kodeImage')->references('idPost')->on('post')->onDelete('cascade');
             // $table->foreign('postCategory')->references('kodeKategori')->on('kategori');
         });
     }

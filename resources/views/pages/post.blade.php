@@ -28,13 +28,16 @@
                                         <th>Published By</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
 
                                         <th>Action</th>
                                     </tr>
-                                    @foreach ($data as $row )
 
+                                    @foreach ($data as $index => $row )
+{{-- {{ dd($data) }} --}}
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{ $index + 1 }}</td>
                                         <td>{{ $row['postTitle'] }}</td>
                                         <td><div style="background-color: {{ sprintf('#%06X', mt_rand(0, 0xFFFFFF)) }}; width:40px; height:40px;"></div></td>
                                         <td>{{ $row['Kategori']['namaKategori'] }}</td>
@@ -42,13 +45,16 @@
                                         <td>{{ $row['user']['email'] }}</td>
                                         <td>{{ $row['created_at'] }}</td>
                                         <td>{{ $row["updated_at"] }}</td>
-
+<td></td>
+<td>{{ $row['status'] }}</td>
                                         <td>
-                                                &nbsp;<a class="btn btn-danger btn-action"
-                                                data-toggle="tooltip"
-                                                title="Delete"
-                                                data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a></td>
+                                                &nbsp;
+                                                <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"
+                                                onclick="confirmDelete('{{ route('delete.post', $row['id']) }}')"
+                                                    >
+                                                    <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
                                     </tr>
                                     @endforeach
                                 </table>
@@ -86,6 +92,34 @@
 
 @push('scripts')
     <!-- JS Libraies -->
+
+    <script>
+        function confirmDelete(url) {
+            if (confirm('Are You Sure? This action can not be undone. Do you want to continue?')) {
+                fetch(url, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        alert('Deleted');
+                        // Optionally, redirect to another page after deletion
+                    } else {
+                        console.log(response);
+                        alert('Deleted');
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 10);
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to delete item');
+                });
+            }
+        }
+
+    </script>
 
     <!-- Page Specific JS File -->
 @endpush

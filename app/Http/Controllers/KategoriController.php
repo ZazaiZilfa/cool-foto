@@ -49,10 +49,13 @@ class KategoriController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kategori $kategori)
+    public function show($id)
     {
-        //
+        $post = Kategori::find($id);
+        return new KategoriResource($post);
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -63,10 +66,11 @@ class KategoriController extends Controller
             'namaKategori' => 'required|max: 255',
         ]);
 
-        $kategori = Kategori::findorFail($id);
-        // dd($kategori);
-        $kategori->update($request->all());
-
+        $kategori = Kategori::findOrFail($id);
+        // dd($kategori->namaKategori);
+        $kategori->namaKategori = $request->namaKategori; // Map request field to model field
+        // dd($kategori->namaKategori);
+        $kategori->update();
         return new KategoriResource($kategori);
     }
 

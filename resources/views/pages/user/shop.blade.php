@@ -71,9 +71,9 @@
 
 <body class="main-layout inner_page">
     <!-- loader  -->
-    <div class="loader_bg">
+    {{-- <div class="loader_bg">
         <div class="loader"><img src="{{ asset('user/images/loading.gif') }}" alt="#" /></div>
-    </div>
+    </div> --}}
     <!-- end loader -->
     <!-- header -->
     <div class="header">
@@ -109,15 +109,22 @@
                                     <a class="nav-link" href="{{ url('shop') }}">shop</a>
                                 </li>&nbsp;
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('library') }}">Library</a>
+                                    <a class="nav-link" href="{{ url('galery') }}">Library</a>
                                     <ul id="submenu">
                                         <li><a href="{{ url('upimage') }}">Add Imaged</a></li>
-                                        <li><a href="{{ url('private') }}">Public Libary</a></li>
+                                        <li><a href="{{ url('private') }}">Private</a></li>
                                         <li><a href="{{ url('wishlist') }}">Wistlist</a></li>
                                     </ul>
                                 </li>&nbsp;
                                 <li class="nav-item">
+                                    @if(session()->has('token'))
+                                    <a class="nav-link" href="{{ url('logout') }} " onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    @else
                                     <a class="nav-link" href="{{ url('login') }}">Login</a>
+                                    @endif
                                 </li>
                             </ul>
                         </div>
@@ -133,28 +140,30 @@
 
     <!-- end header inner -->
     <!-- shop -->
+
     <div class="kategori">
         <div class="filter-button">
-            <button class="active" data-name="all">Show All</button>
-            <button data-name="view">view</button>
-            <button data-name="game">Game</button>
-            <button data-name="anime">Anime</button>
-            <button data-name="aldi">Aldi Taher</button>
-            <button data-name="Devil">Devil</button>
-            <button data-name="Mishima">Mishima</button>
-            <button data-name="ayam">Ayam</button>
-            <button data-name="terlur">Telur</button>
+            <button class="active"><a href="{{ url('shop') }}" style="all: unset;">Show All</a></button>
 
+            @foreach ($data2 as $row)
+<?php $id = $row['idKategori']?>
+            <button class="active"><a href="{{ url("shop/kat/$id")}}" style="all: unset;">{{ $row['namaKategori'] }}</a></button>
+
+            @endforeach
 
         </div>
     </div>
     <div class="card-container">
-        @foreach ( $data as $row )
+        @foreach ( $data1 as $row )
+        @php
+        $randomView = 'view' . rand(1, 11); // Adjust the range as per your actual view names
+        $imagePath = asset("user/images/$randomView.jpg");
+    @endphp
         <div class="card">
-            <img class="img-shop" src="{{ asset('user/images/view.jpeg') }}">
+            <img class="img-shop" src="{{ $imagePath }}">
             <div class="intro">
                 <h1>{{ $row['postImage'] }}</h1>
-                <a href="" class="card-button">Buy</a>
+                <a href="" class="card-button"> Detail </a>
                 <a href="" class="card-button"> <i class='bx bx-like'></i></a>
             </div>
         </div>

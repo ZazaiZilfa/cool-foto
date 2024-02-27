@@ -28,6 +28,31 @@ class AuthController extends Controller
     //     dd($user);
     // }
 
+    // public function index()
+    // {
+    //     return view('pages.auth.login');
+    // }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+
+
+        // return
+        return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
+    }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -40,27 +65,32 @@ class AuthController extends Controller
                 'email' => ['The provided credentials are invalid'],
             ]);
         }
-
-        return $user->createToken('user_login')->plainTextToken;
+        $roles = $user->roles;
+        $token = $user->createToken('user_login')->plainTextToken;
+        return [
+            'token' => $token,
+            'roles' => $roles
+        ];
+        // return
     }
 
     public function logout(Request $request)
     {
-        $logut = $request->user()->currentAccessToken()->delete();
-
-        if ($logut === true) {
-            return "Logged out";
-        } else {
-            return "Logout Failed";
+        dd(Auth::check());
+        if (Auth::check()) {
+            $request->user()->currentAccessToken()->delete();
+            return response()->json(['message' => 'Logged out'], 200);
         }
+
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
 
     public function me(Request $request)
     {
-        $user = Auth::user();
-        $post = Post::where('kodeUser', $user->idUser)->get();
-        // dd($post);
-        return $post;
+        $user = User::all();
+        // $post = Post::where('kodeUser', $user->idUser)->get();
+        // dd($user);
+        return ['data' => $user];
     }
 
 

@@ -26,23 +26,20 @@
 
 
     <div class="wrapper">
-        <form action="">
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
             <h1>Login</h1>
             <div class="input-box">
-                <input type="text" placeholder="Username" required>
+                <input type="text" name="email" placeholder="Email" required>
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Password" required>
-                <i class='bx bxs-lock-alt' ></i>
+                <input type="password" name="password" placeholder="Password" required>
+                <i class='bx bxs-lock-alt'></i>
             </div>
-{{--
-            <div class="remember-forgot">
-                <label><input type="checkbox"> Remember me</label>
-                <a href="#">Forgot Password?</a>
-            </div> --}}
-
             <button type="submit" class="btn">Login</button>
+        </form>
+
             <div class="register-link">
                 <p>Don't have an account? <a href="">Register</a></p>
             </div>

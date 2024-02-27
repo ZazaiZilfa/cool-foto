@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class KategoriResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,15 @@ class KategoriResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->idUser,
+            'namauser' => $this->name,
+            'email' => $this->email,
+            'roles' => $this->roles,
+            'rekening' => $this->rekenings,
 
-            'idKategori' => $this->idKategori,
-            'namaKategori' => $this->namaKategori,
             'created_at' => Carbon::parse($this->created_at)->format('Y-m-d'),
+            'updated_at' => Carbon::parse($this->updated_at)->format('Y-m-d'),
+
         ];
     }
 }
