@@ -41,7 +41,7 @@
         </form>
 
             <div class="register-link">
-                <p>Don't have an account? <a href="">Register</a></p>
+                <p>Don't have an account? <a href="{{ route('register') }}">Register</a></p>
             </div>
         </form>
     </div>

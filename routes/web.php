@@ -3,13 +3,14 @@
 use PharIo\Manifest\Library;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\web\PosttController;
 use App\Http\Controllers\web\AboutController;
 use App\Http\Controllers\web\loginController;
+use App\Http\Controllers\web\PosttController;
 use App\Http\Controllers\web\BerandaController;
+use App\Http\Controllers\web\LibraryController;
 use App\Http\Controllers\web\PrivateController;
 use App\Http\Controllers\web\SessionController;
-use App\Http\Controllers\web\LibraryController;
+use App\Http\Controllers\web\RegisterController;
 use App\Http\Controllers\web\WishlistController;
 use App\Http\Controllers\web\AdminPostController;
 use App\Http\Controllers\web\AdminUsersController;
@@ -33,6 +34,9 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
 
 
 Route::get('/login', [loginController::class, 'showLoginForm'])->name('login');

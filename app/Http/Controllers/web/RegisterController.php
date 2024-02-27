@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\web;
 
-use App\Http\Controllers\Controller;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RegisterController extends Controller
 {
@@ -15,6 +16,32 @@ class RegisterController extends Controller
         return view('pages.auth.register');
     }
 
+    public function register(Request $request)
+    {
+        $client = new Client();
+
+        try {
+            $response = $client->post(url('http://127.0.0.1:8000/api/register'), [
+                'json' => [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => $request->password,
+                ]
+            ]);
+            // if ($response->successful()) {
+            return redirect()->route('login');
+            // }
+            // dd($data);
+            // Here you can handle the response, such as saving token to session
+            // For example:
+            // session(['token' => $data['token']]);
+
+            // return redirect()->route('datasession'); // Redirect to dashboard after successful login
+        } catch (\Exception $e) {
+            // Handle errors, for example, showing error message to user
+            return back()->withInput()->withErrors(['message' => 'Invalid credentials.']);
+        }
+    }
     /**
      * Show the form for creating a new resource.
      */
