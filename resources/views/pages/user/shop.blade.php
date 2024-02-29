@@ -157,12 +157,16 @@
         @foreach ( $data1 as $row )
         @php
         $randomView = 'view' . rand(1, 11); // Adjust the range as per your actual view names
-        $imagePath = asset("user/images/$randomView.jpg");
+        $image = $row['postImage'];
+        $imagePath = "/storage/app/image/$image";
+        $photoPath = $row['postImage']; // Get the value of "postImage" key for the current post
+                $photoUrl = Storage::url('public/image/' . $photoPath); // Generate URL for the phot
+echo $photoUrl; //
     @endphp
         <div class="card">
-            <img class="img-shop" src="{{ $imagePath }}">
+            <img class="img-shop" src="{{ $photoUrl }}">
             <div class="intro">
-                <h1>{{ $row['postImage'] }}</h1>
+                <h1>{{ $row['postTitle'] }}</h1>
                 <a href="" class="card-button"> Detail </a>
                 <a href="" class="card-button"> <i class='bx bx-like'></i></a>
             </div>

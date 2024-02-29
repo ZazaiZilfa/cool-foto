@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PosttController extends Controller
 {
@@ -32,10 +33,23 @@ class PosttController extends Controller
             } else {
                 $data2 = $contentArray['data'];
             }
+
+            // $photoPath = $data1['postImage'][0];
+
+            // Generate URL for the photo
+            // $photoUrl = Storage::url('image/' . $photoPath);
+            foreach ($data1 as $post) {
+                $photoPath = $post['postImage']; // Get the value of "postImage" key for the current post
+                $photoUrl = Storage::url('image/' . $photoPath); // Generate URL for the phot
+
+            }
+            // dd($data1);
         }
 
+
+
         // Pass data to the view as separate variables
-        return view('pages.user.shop', ['data1' => $data1, 'data2' => $data2]);
+        return view('pages.user.shop', ['data1' => $data1, 'data2' => $data2,]);
     }
 
     /**

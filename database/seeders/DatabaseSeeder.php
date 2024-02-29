@@ -14,12 +14,20 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
-    public function run($loopCount = 15)
+    public function run($loopCount = 20)
     {
         for ($i = 0; $i < $loopCount; $i++) {
             // \App\Models\User::factory()->create([
             //     'name' => 'uhuy',
             //     'email' => 'uhuy@gmail.com',
+            //     'password' => Hash::make('123123'),
+            //     'roles' => '2',
+            //     'rekenings' => '0182308120238120',
+            // ]);
+
+            // \App\Models\User::factory()->create([
+            //     'name' => 'j',
+            //     'email' => 'j@gmail.com',
             //     'password' => Hash::make('123123'),
             //     'roles' => '2',
             //     'rekenings' => '0182308120238120',

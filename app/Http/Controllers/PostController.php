@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ShopResource;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\ShopDetailResource;
 
 class PostController extends Controller
@@ -22,19 +23,43 @@ class PostController extends Controller
 
 
 
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        // return pathinfo($request->postImage, PATHINFO_EXTENSION);
         $validated = $request->validate([
             'postTitle' => 'required|max: 255',
             'postCategory' => 'required',
             'postImage' => 'required',
             'status' => 'required',
         ]);
-        $request['idPost'];
-        $post = Post::create($request->all());
+
+        if ($request->postImage) {
+            $fileName = $this->generateRandomString();
+            $extension = "jpg";
+
+            // $extension = $request->postImage->extension();
+
+            $fn = $fileName . '.' . $extension;
+
+            Storage::putFileAs('public/image', $request->postImage, $fn);
+            // $imagePath = $request->file('postImage')->store('public/images');
+        }
+        // return $request->postImage;
+        // $request['idPost'];
+        $post = Post::create([
+            'postTitle' => $request->postTitle,
+            'postDesc' => $request->postDesc,
+            'kodeUser' => $request->idUser,
+            'postCategory' => $request->postCategory,
+            'postImage' => $fn,
+            'price' => $request->price,
+            'approvalStatus' => '0',
+            'status' => $request->status,
+        ]);
         return new ShopResource($post);
     }
 
@@ -87,4 +112,14 @@ class PostController extends Controller
 
     //my own function
 
+    function generateRandomString($length = 20)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[random_int(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
 }

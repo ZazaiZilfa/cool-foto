@@ -48,9 +48,11 @@ class loginController extends Controller
             ]);
 
             $data = json_decode($response->getBody(), true);
+            // dd($data);
             session([
                 'token' => $data['token'],
-                'roles' => $data['roles']
+                'roles' => $data['roles'],
+                'idUser' => $data['iUser'],
             ]);
 
             if ($data['roles'] === 1) {

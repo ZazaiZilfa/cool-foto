@@ -68,11 +68,14 @@ Route::delete('/admin/users/{id}', [AdminUsersController::class, 'destroy'])->na
 //user
 Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/about', [AboutController::class, 'index']);
-Route::get('/shop', [PosttController::class, 'index']);
+Route::get('/shop', [PosttController::class, 'index'])->name('shop');
 Route::get('/shop/{id}', [PosttController::class, 'show'])->name('shop.detail');
 Route::get('/shop/kat/{id}', [PosttController::class, 'showkategori']);
-Route::get('/galery', [LibraryController::class, 'index']);
-Route::get('/upimage', [UploadimageController::class, 'index']);
+Route::get('/galery', [LibraryController::class, 'index'])->name('galery');
+
+Route::get('/upimage', [UploadimageController::class, 'index'])->name('upimage');
+Route::post('/upimage', [UploadimageController::class, 'store']);
+
 Route::get('/private', [PrivateController::class, 'index']);
 Route::get('/wishlist', [WishlistController::class, 'index']);
 

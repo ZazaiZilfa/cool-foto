@@ -67,10 +67,12 @@ class AuthController extends Controller
             ]);
         }
         $roles = $user->roles;
+        $idUser = $user->idUser;
         $token = $user->createToken('user_login')->plainTextToken;
         return [
             'token' => $token,
-            'roles' => $roles
+            'roles' => $roles,
+            'iUser' => $user->idUser
         ];
         // return
     }

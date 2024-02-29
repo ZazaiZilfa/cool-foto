@@ -37,6 +37,7 @@ class PostFactory extends Factory
             'kodeUser' => $randomUserId,
             // 'remember_token' => Str::random(10),
             'postCategory' => $randomKatId,
+            'postDesc' => $this->faker->word(),
             'postImage' => $randomName,
             'postUrl' => $randomName,
             'status' => '2',

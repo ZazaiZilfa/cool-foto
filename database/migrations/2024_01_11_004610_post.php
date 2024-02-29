@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('post', function (Blueprint $table) {
             $table->id('idPost')->index();
             $table->string('postTitle', 255);
+            $table->mediumText('postDesc');
             $table->bigInteger('kodeUser')->unsigned();
             $table->bigInteger('postCategory')->unsigned();
             $table->string('postImage', 255);
             $table->mediumText('postUrl')->nullable();
             $table->integer('price')->nullable();
             $table->integer('status');
+            $table->string('approvalStatus')->nullable();;
             $table->timestamps();
 
             $table->foreign('kodeUser')->references('idUser')->on('users')->onDelete('cascade');
