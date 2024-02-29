@@ -24,6 +24,7 @@ class ShopResource extends JsonResource
             'postCategory' => $this->postCategory,
             'postImage' => $this->postImage,
             'postUrl' => $this->postUrl,
+            'price' => $this->price,
             'status' => $this->status,
             'approvalStatus' => $this->approvalStatus,
             'created_at' => Carbon::parse($this->created_at)->format('Y-m-d'),

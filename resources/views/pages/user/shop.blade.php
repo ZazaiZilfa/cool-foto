@@ -161,7 +161,7 @@
         $imagePath = "/storage/app/image/$image";
         $photoPath = $row['postImage']; // Get the value of "postImage" key for the current post
                 $photoUrl = Storage::url('public/image/' . $photoPath); // Generate URL for the phot
-echo $photoUrl; //
+// echo $photoUrl; //
     @endphp
         <div class="card">
             <img class="img-shop" src="{{ $photoUrl }}">

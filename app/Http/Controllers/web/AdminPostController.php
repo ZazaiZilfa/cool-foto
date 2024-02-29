@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Support\Facades\Storage;
 
 class AdminPostController extends Controller
 {
@@ -44,7 +45,15 @@ class AdminPostController extends Controller
         $contentarray = json_decode($content, true);
         $data = $contentarray['data'];
         // dd($data);
+        usort($data, function ($a, $b) {
+            // First, sort by 'id' in descending order
+            if ($a['id'] !== $b['id']) {
+                return $b['id'] - $a['id'];
+            }
 
+            // If 'id' is the same, sort by 'created_at' in descending order
+            return strtotime($b['created_at']) - strtotime($a['created_at']);
+        });
         return  view('pages.post', ['data' => $data]);
     }
 
