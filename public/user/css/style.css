@@ -555,7 +555,7 @@ ul.email li i {
 /** about section **/
 
 .about {
-     background: url(../images/about_bg.jpg);
+     background: #7e036a;
      background-size: cover;
      background-position: center center;
      background-repeat: no-repeat;
@@ -1115,7 +1115,7 @@ ul.social_icon li a:hover {
      flex-wrap: wrap;
      gap: 25px;
      margin-top: 100px;
-     
+
 
 }
 .card{
@@ -1130,8 +1130,8 @@ ul.social_icon li a:hover {
      transform: translateY(-20px);
 }
 .img-shop{
-     width: 100%;
-     height: auto;
+     width: 500px;
+     height: 455px;
      object-fit: cover;
 }
 .intro{
@@ -1150,6 +1150,16 @@ ul.social_icon li a:hover {
 .card-button{
      display: inline-block;
      background-color: #c1daeb;
+     color: #020000;
+     text-decoration: none;
+     border-radius: 5px;
+     padding: 8px 16px;
+     margin-top: 1%;
+}
+
+.card_btn{
+     display: inline-block;
+     background-color: #b8b8b8;
      color: #020000;
      text-decoration: none;
      border-radius: 5px;
@@ -1216,7 +1226,7 @@ ul.social_icon li a:hover {
 }
 .list-cart .item:nth-child(even){
      background-color: #000000;
-     
+
 }
 .list-cart{
      overflow: auto;
@@ -1271,10 +1281,13 @@ ul.social_icon li a:hover {
  }
 
  .pay-container{
+     border-radius: 10px;
+     border-bottom: #000;
      margin: auto;
+     margin-top: 50px;
     width: 50%;
     padding: 0.5rem 1.5rem;
-    background: rgb(235, 230, 230);
+    background: #7e036a;
     max-width: 800px;
     min-height: 500px;
     justify-content: space-between;
@@ -1284,11 +1297,14 @@ ul.social_icon li a:hover {
  .leftt{
      flex-basis: 50%;
  }
+  .leftt h3{
+     margin-top: 10px;
+ }
  .right{
      flex-basis: 50%;
 
  }
- 
+
  form{
      padding: 1rem;
  }
@@ -1310,6 +1326,7 @@ ul.social_icon li a:hover {
      margin-left: 5px;
  }
  input[type="submit"]{
+     border-radius: 5px;
      width: 100%;
      padding: 0.7rem 1.5rem;
      background:#fff;
@@ -1318,6 +1335,7 @@ ul.social_icon li a:hover {
      outline: none;
      margin-top: 1rem;
      cursor: pointer;
+     margin-bottom: 10px;
  }
  input[type="submit"]:hover{
       background: red;
@@ -1339,7 +1357,7 @@ ul.social_icon li a:hover {
      width: 350px;
      padding: 20px;
      background: black;
-     box-shadow: -3px -3px 7px rgba(94, 104, 121, 0.377), 
+     box-shadow: -3px -3px 7px rgba(94, 104, 121, 0.377),
                3px 3px 7px  rgba(94, 104, 121, 0.377);
  }
  .form-input img{
@@ -1373,7 +1391,7 @@ ul.social_icon li a:hover {
      justify-content: center;
      align-items: center;
      text-align: center;
-    
+
  }
  .container-i .headingg{
      width: 50%;
@@ -1388,7 +1406,7 @@ ul.social_icon li a:hover {
      padding-bottom: 10px;
      border-bottom: 3px solid #7e036a;
      margin-bottom: 3%;
-     
+
  }
  .container-i .headingg h3 span{
      font-weight: 100;
@@ -1443,7 +1461,7 @@ ul.social_icon li a:hover {
      font-size: 1em;
     }
      }
-   
+
      .kategori{
           position: relative;
           max-width: 1350px;
@@ -1451,7 +1469,7 @@ ul.social_icon li a:hover {
           padding: 20px;
           margin: 50px auto;
           margin-left: 8%;
-         
+
      }
      .filter-button{
           display: flex;
@@ -1467,7 +1485,7 @@ ul.social_icon li a:hover {
           border-radius: 6px;
           cursor: pointer;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-     
+
      }
      button.active{
           background: #7e036a;
@@ -1514,25 +1532,20 @@ ul.social_icon li a:hover {
      }
      .upload-image{
           flex: 1;
-          margin-right: 40px;
-          overflow: hidden;
-
-     }
-     .upload-image img{
-          max-width: 100%;
-          height: auto;
-          display: block;
-          transition: 0.5s;
-     }
-     .upload-image:hover img{
-          transform: scale(1.2);
+          margin-left: 15%;
+          width: 10px;
      }
      .upload-konten{
           flex: 1;
      }
      .upload-konten h2{
-          font-size: 23px;
-          margin-bottom: 15px;
+          font-size: 40px;
+          margin-top: 10px;
+          color: #333;
+     }
+     .upload-konten h3{
+          font-size: 25px;
+          margin-bottom: 10px;
           color: #333;
      }
      .upload-konten  p{
@@ -1547,13 +1560,46 @@ ul.social_icon li a:hover {
           color: #fff;
           font-size: 13px;
           text-decoration: none;
-          border-radius: 25px;
+          border-radius: 15px;
           margin-top: 15px;
           transition: 0.3s ease;
           gap: 10px;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
           cursor: pointer;
-          
+     }
+
+     .tekx .categori{
+          display: inline-block;
+          padding: 10px 20px;
+          background-color: #7e036a;
+          color: #fff;
+          font-size: 13px;
+          text-decoration: none;
+          border-radius: 15px;
+          margin-top: 10px;
+          transition: 0.3s ease;
+          gap: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+          cursor: pointer;
+     }
+     .textt .delete{
+          display: inline-block;
+          padding: 10px 20px;
+          background-color: #c1daeb;
+          color: #000000;
+          font-size: 13px;
+          text-decoration: none;
+          border-radius: 15px;
+          margin-top: 30px;
+          transition: 0.3s ease;
+          gap: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+          cursor: pointer;
+
+
+     }
+     .tekx .categori:hover{
+          background-color: #3e0bce;
 
      }
      .upload-konten .public:hover{
@@ -1564,17 +1610,18 @@ ul.social_icon li a:hover {
           height: 90%;
           width: 100%;
           overflow: hidden;
-          margin-bottom: 1%;
+          margin-top: 0;
      }
      .textarea  textarea{
           height: 100%;
           width: 70%;
           outline: none;
-          border: 1px solid #000000;
+          border: 2px solid #000000;
           background: #ffffff;
           padding: 10px;
           font-size: 17px;
           resize: none;
+          border-radius: 7px;
 
      }
 

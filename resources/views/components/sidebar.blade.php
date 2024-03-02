@@ -18,7 +18,7 @@
             </li>
             <li class="{{ Request::is('kategori') ? 'active' : '' }} ">
                 <a  href="{{ url('admin/kategori') }}"
-                    class="nav-link "><i class="fas fa-fire"></i><span>Kategori</span></a>
+                    class="nav-link "><i class="fas fa-fire"></i><span>Category</span></a>
             </li>
             <li class="{{ Request::is('users') ? 'active' : '' }} ">
                 <a  href="{{ url('admin/users') }}"

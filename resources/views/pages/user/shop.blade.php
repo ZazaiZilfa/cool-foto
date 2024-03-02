@@ -167,119 +167,19 @@
             <img class="img-shop" src="{{ $photoUrl }}">
             <div class="intro">
                 <h1>{{ $row['postTitle'] }}</h1>
-                <a href="" class="card-button"> Detail </a>
+                <h4>{{ $row['postDesc'] }}</h4>
+                <br>
+                @if($row['status'] == '1')
+                <a href="" class="card_btn">IDR {{ $row['price'] }}</a>
+                    @elseif($row['status'] == '2')
+                    <a href="" class="card_btn">Not Sale</a>
+                @endif
+
                 <a href="" class="card-button"> <i class='bx bx-like'></i></a>
             </div>
         </div>
         @endforeach
-        {{-- <div class="card">
-            <img class="img-shop" src="{{ asset('user/images/view.jpeg') }}">
-            <div class="intro">
-                <h1>Rice Fields</h1>
-                <p>a <span>Rice Fields</span> </p>
-                <a href="" class="card-button">Buy</a>
-                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="img-shop" src="{{ asset('user/images/view1.jpeg') }}">
-            <div class="intro">
-                <h1>ships in the beautiful sea</h1>
-                <p> <span>ships in the beautiful sea</span></p>
-                <a href="" class="card-button">Buy</a>
-                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="img-shop" src="images/view2.jpg">
-            <div class="intro">
-                <h1>Rice Fields</h1>
-                <p>a <span>Rice Fields</span>asasasas </p>
-                <a href="" class="card-button">Buy</a>
-                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="img-shop" src="images/view3.jpg">
-            <div class="intro">
-                <h1>Rice Fields</h1>
-                <p>a <span>Rice Fields</span>asasasas </p>
-                <a href="" class="card-button">Buy</a>
-                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="img-shop" src="images/view4.jpg">
-            <div class="intro">
-                <h1>Rice Fields</h1>
-                <p>a <span>Rice Fields</span>asasasas </p>
-                <a href="" class="card-button">Buy</a>
-                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="img-shop" src="images/view5.jpg">
-            <div class="intro">
-                <h1>Rice Fields</h1>
-                <p>a <span>Rice Fields</span>asasasas </p>
-                <a href="" class="card-button">Buy</a>
-                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="img-shop" src="images/view6.jpg">
-            <div class="intro">
-                <h1>Rice Fields</h1>
-                <p>a <span>Rice Fields</span>asasasas </p>
-                <a href="" class="card-button">Buy</a>
-                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="img-shop" src="images/view7.jpg">
-            <div class="intro">
-                <h1>Rice Fields</h1>
-                <p>a <span>Rice Fields</span>asasasas </p>
-                <a href="" class="card-button">Buy</a>
-                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="img-shop" src="images/view8.jpg">
-            <div class="intro">
-                <h1>Rice Fields</h1>
-                <p>a <span>Rice Fields</span>asasasas </p>
-                <a href="" class="card-button">Buy</a>
-                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="img-shop" src="images/view9.jpg">
-            <div class="intro">
-                <h1>Rice Fields</h1>
-                <p>a <span>Rice Fields</span>asasasas </p>
-                <a href="" class="card-button">Buy</a>
-                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="img-shop" src="images/view10.jpg">
-            <div class="intro">
-                <h1>Rice Fields</h1>
-                <p>a <span>Rice Fields</span>asasasas </p>
-                <a href="" class="card-button">Buy</a>
-                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="img-shop" src="images/view11.jpg">
-            <div class="intro">
-                <h1>Rice Fields</h1>
-                <p>a <span>Rice Fields</span>asasasas </p>
-                <a href="" class="card-button">Buy</a>
-                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
-            </div>
-        </div> --}}
+
     </div>
     <!-- end shop -->
 

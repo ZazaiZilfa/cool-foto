@@ -21,14 +21,30 @@ class UploadimageController extends Controller
         // dd($sessionroles);
         @$personalAccessToken = PersonalAccessToken::findToken($sessionToken);
 
+        $client = new Client();
+        $urls = [
+            "http://127.0.0.1:8000/api/kategori"
+        ];
+
+        foreach ($urls as $index => $url) {
+            $response = $client->request('GET', $url);
+            $content = $response->getBody()->getContents();
+            $contentArray = json_decode($content, true);
+
+            // Assign data to respective variables based on index
+
+            $data1 = $contentArray['data'];
+        }
+
+
         if (!isset($personalAccessToken)) {
             return view('pages.auth.login');
         }
 
-        return view('pages.user.simpleform', ['sessionid' => $sessionid]);
+        return view('pages.user.simpleform', ['sessionid' => $sessionid, 'kategori' => $data1]);
         // return view('pages.user.simpleform');
-    }
 
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -103,13 +119,13 @@ class UploadimageController extends Controller
 
             // Get the response body content
             $responseBody = $response->getBody()->getContents();
-            dd($responseBody);
+            // dd($responseBody);
             // Output the response body content to see the data
             // return $responseBody;
 
             // dd($request->postImage);
             // if ($response->successful()) {
-            return redirect()->route('galery');
+            return redirect()->route('shop');
             // }
             // dd($data);
             // Here you can handle the response, such as saving token to session

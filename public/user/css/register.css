@@ -8,32 +8,30 @@
     font-family: "poppins", sans-serif;
 }
 
-
-
 body{
-
+   
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-
-
+    background-color: #7e036a;
+    
 }
 
 .wrapper{
     width: 420px;
-    background: transparent;
+    background: #fff;
     border: 2px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    color: #ffffff;
+    color: #7e036a;
     border-radius: 10px;
     padding: 30px 40px;
 }
 
 .wrapper h1{
    font-size: 36px;
-   text-align: center;
+   text-align: center; 
 }
 
 .wrapper .input-box{
@@ -50,16 +48,16 @@ body{
     background: transparent;
     border: none;
     outline: none;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid #7e036a;
     border-radius: 40px;
     font-size: 16px;
-    color: #ffffff;
+    color: #7e036a;
     padding: 20px 45px 20px 20px;
 
 }
 
 .input-box input::placeholder {
-    color: #ffffff;
+    color: #7e036a;
 
 }
 
@@ -75,25 +73,14 @@ body{
 .wrapper .btn {
     width: 100%;
     height: 45px;
-    background: #ffffff;
+    background: #7e036a;
     border: none;
     outline: none;
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     cursor: pointer;
     font-size: 16px;
-    color: #000000;
+    color: #fff;
     font-weight: 600;
 }
 
-.register-link p a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 600;
-
-}
-
-.register-link p a:hover {
-    text-decoration: underline;
-
-}

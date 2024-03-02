@@ -11,7 +11,7 @@
     <style>
 
         body {
-          background-image: url('user/images/gege.png');
+          /* background-image: url('user/images/gege.png'); */
           background-position:center;
 
         }

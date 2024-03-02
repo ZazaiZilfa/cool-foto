@@ -16,9 +16,13 @@
         <input type="text" name="postTitle" placeholder="title"><br>
         <input type="text" name="postDesc" placeholder="description" id=""><br>
         <input type="number" name="price" placeholder="harga" id=""><br>
-        <input type="radio" name="postCategory" value="1"><label for="">abstrak</label>
-        <input type="radio" name="postCategory" value="2"><label for="">tescuy</label>
-        <input type="radio" name="postCategory" value="3"><label for="">gunung</label><br>
+        {{-- {{ dd($kategori) }}qq --}}
+        @foreach ($kategori as $row)
+
+
+        <input type="radio" name="postCategory" value="{{ $row['idKategori'] }}"><label for="">{{ $row['namaKategori'] }}</label>
+        @endforeach
+<br>
 <select name="status" id="">
     <option value="1">sale</option>
     <option value="2">public</option>
