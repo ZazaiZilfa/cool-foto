@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\images;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\images;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,11 @@ Route::prefix('kategori')->group(function () {
     Route::get('/', [KategoriController::class, 'index']);
     Route::get('/{id}', [KategoriController::class, 'show']);
 });
+
+Route::get('wishlist', [WishlistController::class, 'index']);
+Route::post('wishlist', [WishlistController::class, 'store']);
+Route::delete('wishlist', [WishlistController::class, 'destroy']);
+
 Route::get('/user', function () {
     // User dashboard or any other user-related endpoint
 });

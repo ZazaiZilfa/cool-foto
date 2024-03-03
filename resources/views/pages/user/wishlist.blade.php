@@ -115,7 +115,7 @@
                                     <a class="nav-link" href="{{ url('shop') }}">shop</a>
                                 </li>&nbsp;
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('galery') }}">Library</a>
+                                    <a class="nav-link active" href="{{ url('galery') }}">Library</a>
                                     <ul id="submenu">
                                         <li><a href="{{ url('upimage') }}">Add Imaged</a></li>
                                         <li><a href="{{ url('private') }}">Private</a></li>
@@ -145,88 +145,34 @@
       <!-- shop -->
 
       <div class="card-container">
-         <div class="card">
-            <img class="img-shop" src="images/31.jpg">
+        @foreach ( $data1 as $row )
+        @php
+        $randomView = 'view' . rand(1, 11); // Adjust the range as per your actual view names
+        $image = $row['postImage'];
+        $imagePath = "/storage/app/image/$image";
+        $photoPath = $row['postImage']; // Get the value of "postImage" key for the current post
+        $photoUrl = Storage::url('public/image/' . $photoPath); // Generate URL for the phot
+        // echo $photoUrl; //
+        @endphp
+
+        <div class="card">
+            <img class="img-shop" src="{{ $photoUrl }}">
             <div class="intro">
-               <h1>Rice Fields</h1>
-               <br></br>
-               <a href="" class="card-button">Buy</a>
-               <a href="" class="card-button"> <i class='bx bxs-like'></i></a>
+                <h1>{{ $row['postTitle'] }}</h1>
+                <h4>{{ $row['postDesc'] }}</h4>
+                <br>
+                @if($row['status'] == '1')
+                <a href="" class="card-button">IDR {{ $row['price'] }}</a>
+                @elseif($row['status'] == '2')
+                <a href="" class="card_btn">Not Sale</a>
+                @endif
+
+                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
             </div>
-         </div>
-         <div class="card">
-            <img class="img-shop" src="images/32.jpg">
-            <div class="intro">
-               <h1>Rice Fields</h1>
-               <br></br>
-               <a href="" class="card-button">Buy</a>
-               <a href="" class="card-button"><i class='bx bxs-like'></i></a>
-            </div>
-         </div>
-         <div class="card">
-            <img class="img-shop" src="images/33.jpg">
-            <div class="intro">
-               <h1>Rice Fields</h1>
-               <br></br>
-               <a href="" class="card-button">Buy</a>
-               <a href="" class="card-button"><i class='bx bxs-like'></i></a>
-            </div>
-         </div>
-         <div class="card">
-            <img class="img-shop" src="images/34.jpg">
-            <div class="intro">
-               <h1>Rice Fields</h1>
-               <br></br>
-               <a href="" class="card-button">Buy</a>
-               <a href="" class="card-button"> <i class='bx bxs-like'></i></a>
-            </div>
-         </div>
-         <div class="card">
-            <img class="img-shop" src="images/35.jpg">
-            <div class="intro">
-               <h1>Rice Fields</h1>
-               <br></br>
-               <a href="" class="card-button">Buy</a>
-               <a href="" class="card-button"> <i class='bx bxs-like'></i></a>
-            </div>
-         </div>
-         <div class="card">
-            <img class="img-shop" src="images/36.jpg">
-            <div class="intro">
-               <h1>Rice Fields</h1>
-               <br></br>
-               <a href="" class="card-button">Buy</a>
-               <a href="" class="card-button"><i class='bx bxs-like'></i></a>
-            </div>
-         </div>
-         <div class="card">
-            <img class="img-shop" src="images/37.jpg">
-            <div class="intro">
-               <h1>Rice Fields</h1>
-               <br></br>
-               <a href="" class="card-button">Buy</a>
-               <a href="" class="card-button"><i class='bx bxs-like'></i></a>
-            </div>
-         </div>
-         <div class="card">
-            <img class="img-shop" src="images/38.jpg">
-            <div class="intro">
-               <h1>Rice Fields</h1>
-               <br></br>
-               <a href="" class="card-button">Buy</a>
-               <a href="" class="card-button"> <i class='bx bxs-like'></i></a>
-            </div>
-         </div>
-         <div class="card">
-            <img class="img-shop" src="images/39.jpg">
-            <div class="intro">
-               <h1>Rice Fields</h1>
-               <br></br>
-               <a href="" class="card-button">Buy</a>
-               <a href="" class="card-button"> <i class='bx bxs-like'></i></a>
-            </div>
-         </div>
-      </div>
+        </div>
+        @endforeach
+
+    </div>
       <!--  footer -->
       <footer>
          <div class="footer">

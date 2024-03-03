@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\wishlist;
+use App\Models\Wishlist;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\WishlistResource;
 use Illuminate\Http\Request;
 
-class wishlistController extends Controller
+class WishlistController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $Post = Wishlist::all(); // Assuming you're fetching a specific Post, change the parameter as needed
+        // return response()->json(['post-data' => $Post]);
+        return WishlistResource::collection($Post);
     }
 
     /**
@@ -21,7 +24,8 @@ class wishlistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $wishlist = Wishlist::create($request->all());
+        return new WishlistResource($wishlist);
     }
 
     /**
@@ -43,8 +47,9 @@ class wishlistController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(wishlist $wishlist)
+    public function destroy($id)
     {
-        //
+        $wishlist = Wishlist::find($id);
+        return new WishlistResource($wishlist);
     }
 }
