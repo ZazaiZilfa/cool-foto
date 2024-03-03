@@ -1115,7 +1115,7 @@ ul.social_icon li a:hover {
      flex-wrap: wrap;
      gap: 25px;
      margin-top: 100px;
-
+     
 
 }
 .card{
@@ -1163,7 +1163,7 @@ ul.social_icon li a:hover {
      color: #020000;
      text-decoration: none;
      border-radius: 5px;
-     padding: 8px 16px;
+     padding: 8px 16px; 
 }
 
 
@@ -1226,7 +1226,7 @@ ul.social_icon li a:hover {
 }
 .list-cart .item:nth-child(even){
      background-color: #000000;
-
+     
 }
 .list-cart{
      overflow: auto;
@@ -1304,7 +1304,7 @@ ul.social_icon li a:hover {
      flex-basis: 50%;
 
  }
-
+ 
  form{
      padding: 1rem;
  }
@@ -1357,7 +1357,7 @@ ul.social_icon li a:hover {
      width: 350px;
      padding: 20px;
      background: black;
-     box-shadow: -3px -3px 7px rgba(94, 104, 121, 0.377),
+     box-shadow: -3px -3px 7px rgba(94, 104, 121, 0.377), 
                3px 3px 7px  rgba(94, 104, 121, 0.377);
  }
  .form-input img{
@@ -1391,7 +1391,7 @@ ul.social_icon li a:hover {
      justify-content: center;
      align-items: center;
      text-align: center;
-
+    
  }
  .container-i .headingg{
      width: 50%;
@@ -1406,7 +1406,7 @@ ul.social_icon li a:hover {
      padding-bottom: 10px;
      border-bottom: 3px solid #7e036a;
      margin-bottom: 3%;
-
+     
  }
  .container-i .headingg h3 span{
      font-weight: 100;
@@ -1461,7 +1461,7 @@ ul.social_icon li a:hover {
      font-size: 1em;
     }
      }
-
+   
      .kategori{
           position: relative;
           max-width: 1350px;
@@ -1469,7 +1469,7 @@ ul.social_icon li a:hover {
           padding: 20px;
           margin: 50px auto;
           margin-left: 8%;
-
+         
      }
      .filter-button{
           display: flex;
@@ -1485,7 +1485,7 @@ ul.social_icon li a:hover {
           border-radius: 6px;
           cursor: pointer;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-
+     
      }
      button.active{
           background: #7e036a;
@@ -1529,7 +1529,7 @@ ul.social_icon li a:hover {
           justify-content: space-between;
           align-items: center;
           flex-wrap: wrap;
-     }
+     }  
      .upload-image{
           flex: 1;
           margin-left: 15%;
@@ -1595,8 +1595,8 @@ ul.social_icon li a:hover {
           gap: 5px;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
           cursor: pointer;
-
-
+          
+          
      }
      .tekx .categori:hover{
           background-color: #3e0bce;

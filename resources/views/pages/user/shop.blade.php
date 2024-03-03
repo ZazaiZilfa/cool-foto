@@ -83,8 +83,7 @@
                     <div class="full">
                         <div class="center-desk">
                             <div class="logo">
-                                <a href="index.html"><img
-                                        src="{{ asset('user/images/cover.png') }}" alt="#" /></a>
+                                <a href="index.html"><img src="{{ asset('user/images/cover.png') }}" alt="#" /></a>
                             </div>
                         </div>
                     </div>
@@ -113,13 +112,15 @@
                                     <ul id="submenu">
                                         <li><a href="{{ url('upimage') }}">Add Imaged</a></li>
                                         <li><a href="{{ url('private') }}">Private</a></li>
-                                        <li><a href="{{ url('wishlist') }}">Wistlist</a></li>
+                                        <li><a href="{{ url('wishlist') }}">Wishlist</a></li>
                                     </ul>
                                 </li>&nbsp;
                                 <li class="nav-item">
                                     @if(session()->has('token'))
-                                    <a class="nav-link" href="{{ url('logout') }} " onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <a class="nav-link" href="{{ url('logout') }} "
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
                                         @csrf
                                     </form>
                                     @else
@@ -146,8 +147,9 @@
             <button class="active"><a href="{{ url('shop') }}" style="all: unset;">Show All</a></button>
 
             @foreach ($data2 as $row)
-<?php $id = $row['idKategori']?>
-            <button class="active"><a href="{{ url("shop/kat/$id")}}" style="all: unset;">{{ $row['namaKategori'] }}</a></button>
+            <?php $id = $row['idKategori']?>
+            <button class="active"><a href="{{ url("shop/kat/$id")}}"
+                    style="all: unset;">{{ $row['namaKategori'] }}</a></button>
 
             @endforeach
 
@@ -160,9 +162,10 @@
         $image = $row['postImage'];
         $imagePath = "/storage/app/image/$image";
         $photoPath = $row['postImage']; // Get the value of "postImage" key for the current post
-                $photoUrl = Storage::url('public/image/' . $photoPath); // Generate URL for the phot
-// echo $photoUrl; //
-    @endphp
+        $photoUrl = Storage::url('public/image/' . $photoPath); // Generate URL for the phot
+        // echo $photoUrl; //
+        @endphp
+
         <div class="card">
             <img class="img-shop" src="{{ $photoUrl }}">
             <div class="intro">
@@ -170,9 +173,9 @@
                 <h4>{{ $row['postDesc'] }}</h4>
                 <br>
                 @if($row['status'] == '1')
-                <a href="" class="card_btn">IDR {{ $row['price'] }}</a>
-                    @elseif($row['status'] == '2')
-                    <a href="" class="card_btn">Not Sale</a>
+                <a href="" class="card-button">IDR {{ $row['price'] }}</a>
+                @elseif($row['status'] == '2')
+                <a href="" class="card_btn">Not Sale</a>
                 @endif
 
                 <a href="" class="card-button"> <i class='bx bx-like'></i></a>

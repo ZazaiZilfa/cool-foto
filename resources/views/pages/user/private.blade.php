@@ -28,7 +28,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
       <style>
         body{
-            background-color: #2E323C;
+            background-color: #ffffff;
         }
          #submenu{
             left: o;
@@ -71,7 +71,7 @@
             background-color: #ffffff;
          }
          .navigation.navbar-dark .navbar-nav .nav-link {
-            color: #ffffff;
+            color: #000000;
          }
       </style>
    </head>
@@ -120,7 +120,7 @@
                                     <ul id="submenu">
                                         <li><a href="{{ url('upimage') }}">Add Imaged</a></li>
                                         <li><a href="{{ url('private') }}">Private</a></li>
-                                        <li><a href="{{ url('wishlist') }}">Wistlist</a></li>
+                                        <li><a href="{{ url('wishlist') }}">Wishlist</a></li>
                                     </ul>
                                 </li>&nbsp;
                                 <li class="nav-item">
@@ -142,22 +142,87 @@
     </div>
       <!-- end header inner -->
       <!-- shop -->
+{{-- {{ dd($data1) }} --}}
+      <div class="card-container">
+        @foreach ( $data1 as $row )
+        @php
+        $randomView = 'view' . rand(1, 11); // Adjust the range as per your actual view names
+        $image = $row['postImage'];
+        $imagePath = "/storage/app/image/$image";
+        $photoPath = $row['postImage']; // Get the value of "postImage" key for the current post
+        $photoUrl = Storage::url('public/image/' . $photoPath); // Generate URL for the phot
+        // echo $photoUrl; //
+        @endphp
 
-      <div class="pin-container">
-        <div class="carg carg_small"></div>
-        <div class="carg carg_medium"></div>
-        <div class="carg carg_small"></div>
-        <div class="carg carg_medium"></div>
-        <div class="carg carg_large"></div>
-        <div class="carg carg_large"></div>
-        <div class="carg carg_small"></div>
-        <div class="carg carg_small"></div>
-        <div class="carg carg_medium"></div>
-        <div class="carg carg_large"></div>
-        <div class="carg carg_medium"></div>
-        <div class="carg carg_large"></div>
-     </div>
+        @if($row['kodeUser'] != $sessionid || $row['status'] != 3)
+
+        @else
+        <div class="card">
+            <img class="img-shop" src="{{ $photoUrl }}">
+            <div class="intro">
+                <h1>{{ $row['postTitle'] }}</h1>
+                <h4>{{ $row['postDesc'] }}</h4>
+                <br>
+                <a
+                {{-- href="{{ url('edit/' . $row['id']) }}" --}}
+                class="card-button">Edit</a>
+            </div>
+        </div>
+        @endif
+
+
+
+        @endforeach
+      </div>
        <!-- end shop -->
+
+       <!--  footer -->
+    <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <div class="infoma">
+                            <h3>Contact Us</h3>
+                            <ul class="conta">
+                                <li><i class="fa fa-phone" aria-hidden="true"></i>Call 081249578905</li>
+                                <li> <i class="fa fa-envelope" aria-hidden="true"></i><a href="Javascript:void(0)">
+                                        myfahmi45@gmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row border_left">
+                            <div class="col-md-12">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="infoma">
+                                    <h3>Useful Link</h3>
+                                    <ul class="fullink">
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="shop.html">Shop</a></li>
+                                        <li><a href="login.html">Login</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Cool Foto<a href="https://html.design/">by Kelompok 8</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
       <!-- Javascript files-->
       <script src="{{ asset('user/js/jquery.min.js') }}"></script>
       <script src="{{ asset('user/js/bootstrap.bundle.min.js') }}"></script>

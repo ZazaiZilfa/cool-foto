@@ -113,7 +113,7 @@
                                     <ul id="submenu">
                                         <li><a href="{{ url('upimage') }}">Add Imaged</a></li>
                                         <li><a href="{{ url('private') }}">Private</a></li>
-                                        <li><a href="{{ url('wishlist') }}">Wistlist</a></li>
+                                        <li><a href="{{ url('wishlist') }}">Wishlist</a></li>
                                     </ul>
                                 </li>&nbsp;
                                     @else

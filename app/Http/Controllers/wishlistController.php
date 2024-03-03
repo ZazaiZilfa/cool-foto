@@ -1,24 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\web;
+namespace App\Http\Controllers;
 
+use App\Models\wishlist;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class WishlistController extends Controller
+class wishlistController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('pages.user.wishlist');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
     {
         //
     }
@@ -34,15 +27,7 @@ class WishlistController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function show(wishlist $wishlist)
     {
         //
     }
@@ -50,7 +35,7 @@ class WishlistController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, wishlist $wishlist)
     {
         //
     }
@@ -58,7 +43,7 @@ class WishlistController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(wishlist $wishlist)
     {
         //
     }

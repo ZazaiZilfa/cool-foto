@@ -119,7 +119,7 @@ class UploadimageController extends Controller
 
             // Get the response body content
             $responseBody = $response->getBody()->getContents();
-            // dd($responseBody);
+            dd($responseBody);
             // Output the response body content to see the data
             // return $responseBody;
 
