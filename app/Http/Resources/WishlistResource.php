@@ -18,7 +18,7 @@ class WishlistResource extends JsonResource
         return [
             'id' => $this->idWishlist,
             'kodeUser' => $this->kodeUser,
-            'kodedPost' => $this->kodePost,
+            'kodePost' => $this->kodePost,
             'User' => $this->user,
             'postwishlist' => $this->Wlist,
 

@@ -111,7 +111,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('about') }}">About</a>
                                 </li>&nbsp;
-                                <li class="nav-item active">
+                                <li class="nav-item ">
                                     <a class="nav-link" href="{{ url('shop') }}">shop</a>
                                 </li>&nbsp;
                                 <li class="nav-item">
@@ -146,30 +146,40 @@
 
       <div class="card-container">
         @foreach ( $data1 as $row )
+
         @php
         $randomView = 'view' . rand(1, 11); // Adjust the range as per your actual view names
-        $image = $row['postImage'];
+        $image = $row['postwishlist']['postImage'];
         $imagePath = "/storage/app/image/$image";
-        $photoPath = $row['postImage']; // Get the value of "postImage" key for the current post
+        $photoPath = $row['postwishlist']['postImage']; // Get the value of "postImage" key for the current post
         $photoUrl = Storage::url('public/image/' . $photoPath); // Generate URL for the phot
         // echo $photoUrl; //
         @endphp
+@if($row['kodeUser'] != $sessionid)
 
-        <div class="card">
-            <img class="img-shop" src="{{ $photoUrl }}">
-            <div class="intro">
-                <h1>{{ $row['postTitle'] }}</h1>
-                <h4>{{ $row['postDesc'] }}</h4>
-                <br>
-                @if($row['status'] == '1')
-                <a href="" class="card-button">IDR {{ $row['price'] }}</a>
-                @elseif($row['status'] == '2')
-                <a href="" class="card_btn">Not Sale</a>
-                @endif
+@else
+<div class="card">
+    <img class="img-shop" src="{{ $photoUrl }}">
+    <div class="intro">
+        <h1>{{ $row['postwishlist']['postTitle'] }}</h1>
+        <h4>{{ $row['postwishlist']['postDesc'] }}</h4>
+        <br>
+        @if($row['postwishlist']['status'] == '1')
+        <a href="" class="card-button">IDR {{ $row['postwishlist']['price'] }}</a>
+        @elseif($row['postwishlist']['status'] == '2')
+        <a href="" class="card_btn">Not Sale</a>
+        @endif
 
-                <a href="" class="card-button"> <i class='bx bx-like'></i></a>
-            </div>
-        </div>
+        <a href="{{ route('delete.wishlist', $row['id']) }}" onclick="event.preventDefault(); document.getElementById('delete-wishlist').submit();" class="card-button"> <i class='bx bxs-like'></i></a>
+
+        <form id="delete-wishlist" action="{{ route('delete.wishlist', $row['id']) }}" method="POST" style="display: none;">
+            @csrf
+            @method('delete')
+        </form>
+    </div>
+</div>
+@endif
+
         @endforeach
 
     </div>

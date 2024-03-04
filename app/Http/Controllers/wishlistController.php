@@ -50,6 +50,7 @@ class WishlistController extends Controller
     public function destroy($id)
     {
         $wishlist = Wishlist::find($id);
+        $wishlist->delete();
         return new WishlistResource($wishlist);
     }
 }

@@ -2,22 +2,47 @@
 
 namespace App\Http\Controllers\web;
 
-use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class PosttController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        @$sessionid = $request->session()->get('idUser');
+        @$sessionToken = $request->session()->get('token');
+        @$personalAccessToken = PersonalAccessToken::findToken($sessionToken);
+
+        if ($personalAccessToken) {
+            // Decode the token payload
+            $payload = $personalAccessToken->tokenable;
+
+            // $payload will contain the decoded token payload
+            // $payload is typically an instance of the related model (e.g., User)
+
+            // Example: Accessing user ID from the payload
+            $userId = $payload->idUser;
+            $userName = $payload->name;
+            $userEmail = $payload->email;
+            $userRoles = $payload->roles;
+        }
+        // dd($userRoles);
+        if (empty($userId)) {
+            return redirect()->route('login');
+        }
+
         $client = new Client();
         $urls = [
             "http://127.0.0.1:8000/api/shop",
-            "http://127.0.0.1:8000/api/kategori"
+            "http://127.0.0.1:8000/api/kategori",
+            "http://127.0.0.1:8000/api/wishlist"
         ];
 
         $combinedData = [];
@@ -30,8 +55,10 @@ class PosttController extends Controller
             // Assign data to respective variables based on index
             if ($index === 0) {
                 $data1 = $contentArray['data'];
-            } else {
+            } elseif ($index === 1) {
                 $data2 = $contentArray['data'];
+            } elseif ($index === 2) {
+                $data3 = $contentArray['data'];
             }
 
             // $photoPath = $data1['postImage'][0];
@@ -49,7 +76,7 @@ class PosttController extends Controller
 
 
         // Pass data to the view as separate variables
-        return view('pages.user.shop', ['data1' => $data1, 'data2' => $data2,]);
+        return view('pages.user.shop', ['data1' => $data1, 'data2' => $data2, 'data3' => $data3, 'sessionid' => $sessionid]);
     }
 
     /**
@@ -63,12 +90,35 @@ class PosttController extends Controller
     /**
      * Display the specified resource.
      */
-    public function showkategori(string $id)
+    public function showkategori(Request $request, string $id)
     {
+
+        @$sessionid = $request->session()->get('idUser');
+        @$sessionToken = $request->session()->get('token');
+        @$personalAccessToken = PersonalAccessToken::findToken($sessionToken);
+
+        if ($personalAccessToken) {
+            // Decode the token payload
+            $payload = $personalAccessToken->tokenable;
+
+            // $payload will contain the decoded token payload
+            // $payload is typically an instance of the related model (e.g., User)
+
+            // Example: Accessing user ID from the payload
+            $userId = $payload->idUser;
+            $userName = $payload->name;
+            $userEmail = $payload->email;
+            $userRoles = $payload->roles;
+        }
+        // dd($userRoles);
+        if (empty($userId)) {
+            return redirect()->route('login');
+        }
         $client = new Client();
         $urls = [
             "http://127.0.0.1:8000/api/shop/kat/$id",
-            "http://127.0.0.1:8000/api/kategori"
+            "http://127.0.0.1:8000/api/kategori",
+            "http://127.0.0.1:8000/api/wishlist"
         ];
 
         $combinedData = [];
@@ -81,13 +131,15 @@ class PosttController extends Controller
             // Assign data to respective variables based on index
             if ($index === 0) {
                 $data1 = $contentArray['data'];
-            } else {
+            } elseif ($index === 1) {
                 $data2 = $contentArray['data'];
+            } elseif ($index === 2) {
+                $data3 = $contentArray['data'];
             }
         }
 
         // Pass data to the view as separate variables
-        return view('pages.user.shop', ['data1' => $data1, 'data2' => $data2]);
+        return view('pages.user.shop', ['data1' => $data1, 'data2' => $data2, 'data3' => $data3, 'sessionid' => $sessionid]);
     }
 
     /**

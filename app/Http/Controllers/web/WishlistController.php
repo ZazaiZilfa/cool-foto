@@ -40,8 +40,8 @@ class WishlistController extends Controller
 
         $client = new Client();
         $urls = [
-            "http://127.0.0.1:8000/api/shop",
-            "http://127.0.0.1:8000/api/wishlist",
+            // "http://127.0.0.1:8000/api/shop",
+            "http://127.0.0.1:8000/api/wishlist"
         ];
 
         $combinedData = [];
@@ -54,26 +54,26 @@ class WishlistController extends Controller
             // Assign data to respective variables based on index
             if ($index === 0) {
                 $data1 = $contentArray['data'];
-            } else {
-                $data2 = $contentArray['data'];
+                // } else {
+                //     $data2 = $contentArray['data'];
+                // }
+
+                // $photoPath = $data1['postImage'][0];
+
+                // Generate URL for the photo
+                // $photoUrl = Storage::url('image/' . $photoPath);
+                foreach ($data1 as $post) {
+                    $photoPath = $post['postwishlist']['postImage']; // Get the value of "postImage" key for the current post
+                    $photoUrl = Storage::url('image/' . $photoPath); // Generate URL for the phot
+
+                }
+                // dd($data1);
             }
-
-            // $photoPath = $data1['postImage'][0];
-
-            // Generate URL for the photo
-            // $photoUrl = Storage::url('image/' . $photoPath);
-            foreach ($data1 as $post) {
-                $photoPath = $post['postImage']; // Get the value of "postImage" key for the current post
-                $photoUrl = Storage::url('image/' . $photoPath); // Generate URL for the phot
-
-            }
-            // dd($data1);
         }
-
-
+        // dd($data1);
 
         // Pass data to the view as separate variables
-        return view('pages.user.wishlist', ['data1' => $data1, 'data2' => $data2, 'sessionid' => $sessionid]);
+        return view('pages.user.wishlist', ['data1' => $data1, 'sessionid' => $sessionid]);
     }
 
     /**
@@ -89,7 +89,42 @@ class WishlistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kodeUser = $request->kodeUser;
+        $kodePost = $request->kodePost;
+
+        // $parameter = [
+        //     'namakategori' => $namakat
+        // ];
+
+        $client = new Client();
+        $url = "http://127.0.0.1:8000/api/wishlist";
+
+        $respone = $client->request('POST', $url, [
+            'headers' => ['Accept' => 'application/json'],
+            'multipart' => [
+                [
+                    'name' => 'kodeUser',
+                    'contents' => $kodeUser
+                ],
+                [
+                    'name' => 'kodePost',
+                    'contents' => $kodePost
+                ]
+            ]
+        ]);
+
+
+
+        // $respone = $client->request('POST', $url, [
+        //     'headers' => ['Accept' => 'application/json'],
+        //     'body' => json_encode($parameter)
+        // ]);
+        $content = $respone->getBody()->getContents();
+        $contentarray = json_decode($content, true);
+        $data = $contentarray['data'];
+        // dd($data);
+        // print_r($data);
+        return   redirect()->route('shop');
     }
 
     /**
@@ -121,6 +156,26 @@ class WishlistController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $client = new Client();
+        $url = "http://127.0.0.1:8000/api/wishlist/{$id}";
+
+        // dd($namakat);
+        $respone = $client->request(
+            'DELETE',
+            $url
+        );
+
+
+
+        // $respone = $client->request('POST', $url, [
+        //     'headers' => ['Accept' => 'application/json'],
+        //     'body' => json_encode($parameter)
+        // ]);
+        $content = $respone->getBody()->getContents();
+        $contentarray = json_decode($content, true);
+        $data = $contentarray['data'];
+        // dd($data);
+        // print_r($data);
+        return   redirect()->route('wishlist')->with('success', 'Item deleted successfully');
     }
 }

@@ -79,7 +79,7 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $row['postTitle'] }}</td>
                                     <td>
-                                        <div style="background-color: {{ sprintf('#%06X', mt_rand(0, 0xFFFFFF)) }}; width:40px; height:40px;">
+                                        <div style=" width:40px; height:40px;">
                                             <img class="small-image" src="{{ $photoUrl }} " style="max-width: 100%; max-height: 100%;">
                                         </div>
                                         <div class="popup" id="popup">

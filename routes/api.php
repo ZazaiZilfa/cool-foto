@@ -77,7 +77,7 @@ Route::prefix('kategori')->group(function () {
 
 Route::get('wishlist', [WishlistController::class, 'index']);
 Route::post('wishlist', [WishlistController::class, 'store']);
-Route::delete('wishlist', [WishlistController::class, 'destroy']);
+Route::delete('wishlist/{id}', [WishlistController::class, 'destroy']);
 
 Route::get('/user', function () {
     // User dashboard or any other user-related endpoint

@@ -76,8 +76,12 @@ Route::get('/galery', [LibraryController::class, 'index'])->name('galery');
 Route::get('/upimage', [UploadimageController::class, 'index'])->name('upimage');
 Route::post('/upimage', [UploadimageController::class, 'store']);
 
+Route::get('/editphoto/{id}', [UploadimageController::class, 'show'])->name('edit.photo');
+
 Route::get('/private', [PrivateController::class, 'index']);
-Route::get('/wishlist', [WishlistController::class, 'index']);
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+Route::post('/wishlist', [WishlistController::class, 'store'])->name('post.wishlist');
+Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy'])->name('delete.wishlist');
 
 
 

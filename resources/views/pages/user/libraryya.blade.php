@@ -102,7 +102,7 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="{{ url('beranda') }}">Home</a>
+                                    <a class="nav-link" href="{{ url('beranda') }}">Home</a>
                                 </li>
                                 &nbsp;
                                 <li class="nav-item">
@@ -155,6 +155,10 @@
         @if($row['kodeUser'] != $sessionid)
 
         @else
+
+        @if($row['status'] == '3')
+
+        @else
         <div class="card">
             <img class="img-shop" src="{{ $photoUrl }}">
             <div class="intro">
@@ -162,10 +166,12 @@
                 <h4>{{ $row['postDesc'] }}</h4>
                 <br>
                 <a
-                {{-- href="{{ url('edit/' . $row['id']) }}" --}}
+                href="{{ route('edit.photo', $row['id']) }}"
                 class="card-button">Edit</a>
             </div>
         </div>
+        @endif
+
         @endif
 
 

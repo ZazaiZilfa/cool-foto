@@ -35,7 +35,7 @@ class images extends Controller
             ];
         }
 
-        return response()->json($images);
+        return response()->json(['data' => $images]);
     }
 
     /**
